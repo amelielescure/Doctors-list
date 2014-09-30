@@ -6,23 +6,12 @@ class HealthProfessionalsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@health_professionals) do |professional, marker|
       marker.lat professional.latitude
       marker.lng professional.longitude
-      marker.title professional.firstname
+      marker.infowindow "#{professional.firstname} #{professional.lastname}"
     end
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @health_professionals }
-    end
-  end
-
-  # GET /health_professionals/1
-  # GET /health_professionals/1.json
-  def show
-    @health_professional = HealthProfessional.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @health_professional }
     end
   end
 
@@ -49,7 +38,7 @@ class HealthProfessionalsController < ApplicationController
 
     respond_to do |format|
       if @health_professional.save
-        format.html { redirect_to @health_professional, notice: 'Health professional was successfully created.' }
+        format.html { redirect_to health_professionals_path}
         format.json { render json: @health_professional, status: :created, location: @health_professional }
       else
         format.html { render action: "new" }

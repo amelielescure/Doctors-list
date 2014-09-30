@@ -1,0 +1,26 @@
+fr:
+  hello: "Hello world"
+  activerecord:
+    models:
+      health_professional: Professionel de Santé
+    attributes:
+      health_professional:
+        firstname: "Nom"
+        lastname: "Prénom"
+        speciality: "Spécialité"
+        address: "Adresse"
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Retour"
+      cancel: "Annuler"
+      create: "Créer"
+      confirm: "Êtes vous sur?"
+      destroy: "Supprimer"
+      new: "Nouveau"
+      edit: "Editer"
+    titles:
+      edit: "Modification d'un %{model}"
+      save: "Save %{model}"
+      new: "Nouveau %{model}"
+      delete: "Suppression d'un %{model}"
