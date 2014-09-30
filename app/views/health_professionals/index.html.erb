@@ -1,0 +1,57 @@
+
+<div class="row">
+  <div class="span5">
+    <%- model_class = HealthProfessional -%>
+    <div class="page-header">
+      <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= model_class.human_attribute_name(:firstname) %></th>
+          <th><%= model_class.human_attribute_name(:lastname) %></th>
+          <th><%= model_class.human_attribute_name(:speciality) %></th>
+          <th><%= model_class.human_attribute_name(:address) %></th>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @health_professionals.each do |health_professional| %>
+          <tr>
+            <td><%= health_professional.firstname %></td>
+            <td><%= health_professional.lastname %></td>
+            <td><%= health_professional.speciality %></td>
+            <td><%= health_professional.address %></td>
+            <td>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                          edit_health_professional_path(health_professional), :class => 'btn btn-mini' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                          health_professional_path(health_professional),
+                          :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-mini btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_health_professional_path,
+            :class => 'btn btn-primary' %>
+  </div>
+  <div class="span7">
+    <div style='width: 650px;'>
+      <div id="map" style='width: 650px; height: 400px;'></div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+</script>
