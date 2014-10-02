@@ -1,7 +1,7 @@
 DoctorsList::Application.routes.draw do
   resources :health_professionals
 
-  root :to => 'HealthProfessionals#index'
+  root :to => 'health_professionals#index'
 
 
   # The priority is based upon order of creation:

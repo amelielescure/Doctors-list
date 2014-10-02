@@ -1,8 +1,9 @@
 fr:
   hello: "Hello world"
+  health_professional: Professionnels de Santé
   activerecord:
     models:
-      health_professional: Professionel de Santé
+      health_professional: Professionnel de Santé
     attributes:
       health_professional:
         firstname: "Nom"
